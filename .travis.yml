@@ -83,6 +83,15 @@ matrix:
         - /usr/local/android-sdk/cmake/3.6.4111459/bin/cmake --build . --target all
         - /usr/local/android-sdk/cmake/3.6.4111459/bin/ctest --output-on-failure
 
+    - compiler: clang 
+      addons: 
+        apt: 
+          sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-6.0'] 
+          packages: ['clang-6.0'] 
+      env: 
+        - CXX=clang++-6.0 
+        - CPPFLAGS=-fsanitize=undefined 
+
 script:
   - $CXX --version
   - make -kj3
